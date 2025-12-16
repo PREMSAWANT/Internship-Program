@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productivity Tracker</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      width: 360px;
+      font-family: 'Outfit', sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      overflow-x: hidden;
+    }
+    
+    .header {
+      padding: 1.5rem;
+      text-align: center;
+      background: radial-gradient(circle at top right, #4338ca 0%, #0f172a 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+    
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    }
+    
+    .header h1 {
+      font-size: 1.4rem;
+      margin-bottom: 0.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .header p {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+    
+    .content {
+      padding: 1.25rem;
+      max-height: 450px;
+      overflow-y: auto;
+      background: #0f172a;
+    }
+
+    /* Custom scrollbar */
+    .content::-webkit-scrollbar {
+      width: 6px;
+    }
+    .content::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+    }
+    
+    .stats-card {
+      background: rgba(30, 41, 59, 1);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    }
+    
+    .stats-card:hover {
+      background: rgba(30, 41, 59, 0.8);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+    
+    .stats-card h3 {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+    
+    .website-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .website-item:last-child {
+      border-bottom: none;
+    }
+    
+    .website-name {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .website-name::before {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #6366f1;
+      box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+    }
+    
+    .time-spent {
+      color: #a5b4fc;
+      font-weight: 600;
+      font-size: 0.9rem;
+      background: rgba(99, 102, 241, 0.1);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+    }
+    
+    .total-time {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 1rem 0;
+      color: white;
+      text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    }
+    
+    .no-data {
+      text-align: center;
+      padding: 2rem;
+      color: #64748b;
+      font-style: italic;
+    }
+    
+    .footer {
+      padding: 1rem;
+      text-align: center;
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      position: sticky;
+      bottom: 0;
+    }
+    
+    .clear-button {
+      padding: 0.75rem 1.5rem;
+      background: rgba(239, 68, 68, 0.1);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      width: 100%;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    
+    .clear-button:hover {
+      background: rgba(239, 68, 68, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .clear-button:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>⏱️ Productivity Tracker</h1>
+    <p id="date"></p>
+  </div>
+  
+  <div class="content">
+    <div class="stats-card">
+      <h3>Total Time Today</h3>
+      <div class="total-time" id="total-time">0m</div>
+    </div>
+    
+    <div class="stats-card">
+      <h3>Time by Website</h3>
+      <div id="website-list"></div>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <button class="clear-button" id="clear-button">Clear Today's Data</button>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
