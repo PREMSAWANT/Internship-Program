@@ -58,9 +58,9 @@ function Collab() {
       <div className="join-screen">
         <Link to="/" className="back-to-home">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M19 12H5M12 19l-7-7 7-7"/>
+            <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
-          <span>Portfolio</span>
+          <span>Back to Portfolio</span>
         </Link>
         <div className="join-card">
           <h1>📝 Real-Time Collaboration</h1>
@@ -84,9 +84,9 @@ function Collab() {
     <div className="app-container">
       <Link to="/" className="back-to-home">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M19 12H5M12 19l-7-7 7-7"/>
+          <path d="M19 12H5M12 19l-7-7 7-7" />
         </svg>
-        <span>Portfolio</span>
+        <span>Back to Portfolio</span>
       </Link>
       <header className="app-header">
         <h1>📝 Real-Time Collaboration Tool</h1>
