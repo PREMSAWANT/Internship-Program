@@ -120,16 +120,15 @@ mongoose.connect(process.env.MONGODB_URI)
 chatSocketHandler(io);
 collabSocketHandler(io);
 
-// Start server if not running on Vercel
+// Start server
 const PORT = process.env.PORT || 5000;
-if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
-  httpServer.listen(PORT, () => {
-    console.log(`✓ Server running on port ${PORT}`);
-    console.log(`✓ Socket.IO server ready`);
-    console.log(`✓ Chat namespace: /chat`);
-    console.log(`✓ Collaboration namespace: /collab`);
-  });
-}
+httpServer.listen(PORT, () => {
+  console.log(`✓ Server running on port ${PORT}`);
+  console.log(`✓ Socket.IO server ready`);
+  console.log(`✓ Chat namespace: /chat`);
+  console.log(`✓ Collaboration namespace: /collab`);
+});
+
 
 
 // Handle shutdown gracefully

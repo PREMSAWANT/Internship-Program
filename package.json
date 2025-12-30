@@ -13,10 +13,9 @@
     "build": "npm run build -w client",
     "start": "npm start -w server",
     "install:all": "npm install",
-    "setup": "node scripts/setup.js",
-    "vercel-build": "cd client && npm install && npm run build"
-
+    "setup": "node scripts/setup.js"
   },
+
 
   "devDependencies": {
     "concurrently": "^8.2.2"
