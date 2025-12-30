@@ -26,15 +26,16 @@ module.exports = (io) => {
     // Send message
     socket.on('message:send', async (data) => {
       try {
-        const { conversationId, senderId, receiverId, content } = data;
+        const { conversationId, senderId, recipientId, content } = data;
 
         // Save message to database
         const message = new Message({
           sender: senderId,
-          recipient: receiverId,
+          recipient: recipientId,
           content,
           timestamp: new Date()
         });
+
         await message.save();
 
         // Emit to conversation room

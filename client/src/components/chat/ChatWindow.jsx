@@ -11,12 +11,21 @@ const ChatWindow = ({ recipient, currentUser }) => {
   const messagesEndRef = useRef(null);
   const typingTimeoutRef = useRef(null);
 
+  const getConversationId = (id1, id2) => {
+    return [id1, id2].sort().join('_');
+  };
+
   useEffect(() => {
+    const conversationId = getConversationId(currentUser._id, recipient._id);
     loadMessages();
     
     const socket = getSocket();
     if (socket) {
+      // Join room for this specific conversation
+      socket.emit('conversation:join', conversationId);
+
       socket.on('message:receive', handleNewMessage);
+
       socket.on('message:sent', handleNewMessage);
       socket.on('typing:show', ({ userId }) => {
         if (userId === recipient._id) setTyping(true);
@@ -63,11 +72,15 @@ const ChatWindow = ({ recipient, currentUser }) => {
     if (!newMessage.trim()) return;
 
     const socket = getSocket();
+    const conversationId = getConversationId(currentUser._id, recipient._id);
+    
     socket.emit('message:send', {
       senderId: currentUser._id,
       recipientId: recipient._id,
+      conversationId: conversationId,
       content: newMessage
     });
+
 
     setNewMessage('');
     stopTyping();
@@ -77,10 +90,15 @@ const ChatWindow = ({ recipient, currentUser }) => {
     setNewMessage(e.target.value);
     
     const socket = getSocket();
+    const conversationId = getConversationId(currentUser._id, recipient._id);
+
     socket.emit('typing:start', {
       senderId: currentUser._id,
-      recipientId: recipient._id
+      recipientId: recipient._id,
+      conversationId: conversationId,
+      username: currentUser.username
     });
+
 
     if (typingTimeoutRef.current) {
       clearTimeout(typingTimeoutRef.current);
@@ -91,11 +109,15 @@ const ChatWindow = ({ recipient, currentUser }) => {
 
   const stopTyping = () => {
     const socket = getSocket();
+    const conversationId = getConversationId(currentUser._id, recipient._id);
+
     socket.emit('typing:stop', {
       senderId: currentUser._id,
-      recipientId: recipient._id
+      recipientId: recipient._id,
+      conversationId: conversationId
     });
   };
+
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
