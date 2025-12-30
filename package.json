@@ -1,0 +1,27 @@
+{
+  "name": "internship-portfolio",
+  "version": "1.0.0",
+  "description": "Unified portfolio showcasing 4 full-stack internship projects",
+  "author": "Prem Sawant",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client",
+    "start": "npm start -w server",
+    "install:all": "npm install",
+    "setup": "node scripts/setup.js",
+    "vercel-build": "cd client && npm install && npm run build"
+
+  },
+
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
