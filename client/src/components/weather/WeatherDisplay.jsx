@@ -1,4 +1,5 @@
-import { getWeatherIconUrl } from '../services/weatherApi';
+import { getWeatherIconUrl } from '../../services/weatherApi';
+
 import './WeatherDisplay.css';
 
 /**

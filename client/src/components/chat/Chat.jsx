@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { userAPI } from '../../services/api';
-import { getSocket } from '../services/socket';
+import { getSocket } from '../../services/socket';
+
 import ChatWindow from './ChatWindow';
 import './Chat.css';
 
@@ -38,8 +39,9 @@ const Chat = () => {
 
   const loadUsers = async () => {
     try {
-      const response = await userAPI.getUsers();
+      const response = await userAPI.getAllUsers();
       setUsers(response.data);
+
       response.data.forEach(u => {
         if (u.status === 'online') {
           setOnlineUsers(prev => new Set([...prev, u._id]));

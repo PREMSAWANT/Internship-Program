@@ -31,7 +31,7 @@ module.exports = (io) => {
         // Save message to database
         const message = new Message({
           sender: senderId,
-          receiver: receiverId,
+          recipient: receiverId,
           content,
           timestamp: new Date()
         });
@@ -42,6 +42,7 @@ module.exports = (io) => {
           ...message.toJSON(),
           _id: message._id
         });
+
       } catch (error) {
         console.error('[Chat] Error sending message:', error);
         socket.emit('message:error', { error: 'Failed to send message' });

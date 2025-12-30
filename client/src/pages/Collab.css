@@ -1,0 +1,143 @@
+/* Collaboration Tool Styles */
+.collab-page {
+  min-height: 100vh;
+  background: #0f172a;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.collab-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #1e293b;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.collab-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.join-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.join-card {
+  background: #1e293b;
+  padding: 3rem;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.join-card h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.join-input {
+  width: 100%;
+  padding: 1rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.1rem;
+  transition: all 0.2s ease;
+}
+
+.join-input:focus {
+  border-color: #646cff;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(100, 108, 255, 0.1);
+}
+
+.editor-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-header {
+  padding: 1rem 2rem;
+  background: #0f172a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.active-users {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.user-badge {
+  padding: 0.25rem 0.75rem;
+  background: rgba(100, 108, 255, 0.1);
+  color: #a5b4fc;
+  border: 1px solid rgba(100, 108, 255, 0.2);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.editor-container {
+  flex: 1;
+  position: relative;
+  background: #0f172a;
+}
+
+.collab-editor {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  padding: 2rem;
+  background: transparent;
+  border: none;
+  color: #e2e8f0;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  resize: none;
+  outline: none;
+}
+
+.cursor-tag {
+  position: absolute;
+  padding: 2px 8px;
+  background: #646cff;
+  color: white;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 10;
+  transition: all 0.1s ease;
+}

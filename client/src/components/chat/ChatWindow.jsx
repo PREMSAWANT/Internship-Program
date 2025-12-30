@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { userAPI } from '../../services/api';
-import { getSocket } from '../services/socket';
+import { getSocket } from '../../services/socket';
+
 import './ChatWindow.css';
 
 const ChatWindow = ({ recipient, currentUser }) => {

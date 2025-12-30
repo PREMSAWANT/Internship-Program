@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-import { io } from 'socket.io-client';
 import { Link } from 'react-router-dom';
+import { getCollabSocket } from '../services/socket';
 import './Collab.css';
 
-const SOCKET_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-
 function Collab() {
+
+
   const [username, setUsername] = useState('');
   const [joined, setJoined] = useState(false);
   const [content, setContent] = useState('');
@@ -14,9 +14,10 @@ function Collab() {
 
   useEffect(() => {
     if (joined) {
-      socketRef.current = io(`${SOCKET_URL}/collab`);
+      socketRef.current = getCollabSocket();
       
       socketRef.current.emit('user:join', username);
+
       
       socketRef.current.on('document:init', (initialContent) => {
         setContent(initialContent);

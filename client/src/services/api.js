@@ -44,6 +44,11 @@ export const userAPI = {
   getUserById: async (userId) => {
     return apiClient.get(`/users/${userId}`);
   },
+  
+  getMessages: async (userId) => {
+    return apiClient.get(`/users/${userId}/messages`);
+  },
 };
+
 
 export default apiClient;
